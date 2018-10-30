@@ -1,0 +1,26 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "crawl web data",
+  "main": "crawler.js",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "deasync": "^0.1.13",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "no test"
+  },
+  "author": "Uihyun Kim",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uihyun/lowes_crawler.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/uihyun/lowes_crawler/issues"
+  },
+  "homepage": "https://github.com/uihyun/lowes_crawler#readme"
+}
