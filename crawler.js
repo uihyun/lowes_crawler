@@ -59,7 +59,7 @@ function getArticle(i) {
         
             // write csv header
             if (outputType === 1 && p == 0) {
-                fs.writeFile('store_lowes_' + brand + '.csv', 'seq,title,link,content,modelcode,price,rating,replycount,replydate,replybody,replywriter,replyrating\n', 'utf-8', function (err) {
+                fs.writeFile('store_lowes_' + brand + '.csv', 'seq,title,link,content,modelcode,price,rating,replycount,replydate,replybody,replywriter,replyrating,brand,site\n', 'utf-8', function (err) {
                     if (err) throw err;
                     console.log("### saved header ###");
                 });
@@ -178,10 +178,16 @@ function getArticle(i) {
                                     else console.log("### saved item and reply " + r + " ###");
                                 });
                             } else if (outputType === 1) {
+                                brand = brand.toUpperCase();
+                                if (brand == 'SAMSUNG')
+                                    brand = 'Samsung';
+                                else if (brand == 'WHIRLPOOL')
+                                    brand = 'Whirlpool';
+
                                 // write csv
                                 fs.appendFile('store_lowes_' + brand + '.csv',  '"' + post["seq"] + '","' + post["title"] + '","' + post["link"] + '","' + post["content"] + 
                                 '","' + post["modelcode"] + '","' + post["price"] + '","' + post["rating"] + '","' + post["replycount"] + '","' + reply["replydate"] + 
-                                '","' + reply["replybody"] + '","' + reply["replywriter"] + '","' + reply["replyrating"] + '","lowes"\n', 'utf-8', function (err) {
+                                '","' + reply["replybody"] + '","' + reply["replywriter"] + '","' + reply["replyrating"] + '","' + brand + '","lowes"\n', 'utf-8', function (err) {
                                     if (err) throw err;
                                     else console.log("### saved item and reply " + r + " ###");
                                 });

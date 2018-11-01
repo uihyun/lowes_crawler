@@ -1,6 +1,6 @@
 // configuration
-exports.itemCount = 27;
-exports.brand = "samsung";
+exports.itemCount = 29;
+exports.brand = "whirlpool";
 
 exports.showContents = false;
 

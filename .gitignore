@@ -60,5 +60,7 @@ typings/
 # vscode
 .vscode
 
-# result file
+# result file and folder
 *.csv
+lowes/
+
