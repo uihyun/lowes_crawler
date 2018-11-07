@@ -76,6 +76,7 @@ function getArticle(i) {
             var post = posts[p];
             var link = post["link"];
             var sync1 = true;
+	    var replycountIdx = 0;
             request(link, function (err, res, html) {
                 if (err) return console.error(err);
                 
@@ -91,6 +92,23 @@ function getArticle(i) {
                     post["rating"] = rating;
                     var replycount = data.find("span.reviews-count").text().trim().replace(/\r\n|\n|\r|\t/g,"").replace(/\"/g,"\"\"");
                     replycount = replycount.substring(0, replycount.indexOf(" Ratings"));
+
+                    replycountIdx = replycount - 1;
+		    
+		    if (replycount <= 100) {
+                        replycount = "0~100";
+                    } else if (replycount <= 500) {
+                        replycount = "100~500";
+                    } else if (replycount <= 1000) {
+                        replycount = "500~1000";
+                    } else if (replycount <= 5000) {
+                        replycount = "1000~5000";
+                    } else if (replycount <= 10000) {
+                        replycount = "5000~10000";
+                    } else {
+                        replycount = "10000~";
+                    }
+
                     post["replycount"] = replycount;
                     
                     if (showContents) {
@@ -118,7 +136,6 @@ function getArticle(i) {
                 }
                 sync1 = true;
 
-                var replycountIdx = post["replycount"] - 1;
                 var r = 0;
                 var offset = 0;
                 if (replycountIdx < offset)
@@ -178,16 +195,16 @@ function getArticle(i) {
                                     else console.log("### saved item and reply " + r + " ###");
                                 });
                             } else if (outputType === 1) {
-                                brand = brand.toUpperCase();
-                                if (brand == 'SAMSUNG')
-                                    brand = 'Samsung';
-                                else if (brand == 'WHIRLPOOL')
-                                    brand = 'Whirlpool';
+                                var brandStr = brand.toUpperCase();
+                                if (brand == 'samsung')
+                                    brandStr = 'Samsung';
+                                else if (brand == 'whirlpool')
+                                    brandStr = 'Whirlpool';
 
                                 // write csv
                                 fs.appendFile('store_lowes_' + brand + '.csv',  '"' + post["seq"] + '","' + post["title"] + '","' + post["link"] + '","' + post["content"] + 
                                 '","' + post["modelcode"] + '","' + post["price"] + '","' + post["rating"] + '","' + post["replycount"] + '","' + reply["replydate"] + 
-                                '","' + reply["replybody"] + '","' + reply["replywriter"] + '","' + reply["replyrating"] + '","' + brand + '","lowes"\n', 'utf-8', function (err) {
+                                '","' + reply["replybody"] + '","' + reply["replywriter"] + '","' + reply["replyrating"] + '","' + brandStr + '","lowes"\n', 'utf-8', function (err) {
                                     if (err) throw err;
                                     else console.log("### saved item and reply " + r + " ###");
                                 });
