@@ -7,14 +7,15 @@ var request = require('request'),
 var itemCount = config.itemCount,
     showContents = config.showContents,
     outputType = config.outputType,
-    brand = config.brand;
+    brand = config.brand,
+    product = config.product;
 
 var posts = new Array();
 
 function getArticle(i) {
     console.log("### start ###");
     
-    var url = "https://www.lowes.com/search?searchTerm=" + brand + "+washer";
+    var url = "https://www.lowes.com/search?searchTerm=" + brand + "+" + washer;
 
     var sync = true;
     request(url, function (err, res, html) {
