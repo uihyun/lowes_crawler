@@ -8,7 +8,8 @@ var itemCount = config.itemCount,
     showContents = config.showContents,
     outputType = config.outputType,
     brand = config.brand,
-    product = config.product;
+    product = config.product,
+    dateformat = config.dateformat;
 
 var posts = new Array();
 
@@ -95,19 +96,21 @@ function getArticle(i) {
                     replycount = replycount.substring(0, replycount.indexOf(" Ratings"));
 
                     replycountIdx = replycount - 1;
-		    
-		    if (replycount <= 100) {
-                        replycount = "0~100";
-                    } else if (replycount <= 500) {
-                        replycount = "100~500";
-                    } else if (replycount <= 1000) {
-                        replycount = "500~1000";
-                    } else if (replycount <= 5000) {
-                        replycount = "1000~5000";
-                    } else if (replycount <= 10000) {
-                        replycount = "5000~10000";
-                    } else {
-                        replycount = "10000~";
+            
+                    if (dateformat == 1) {
+                        if (replycount <= 100) {
+                            replycount = "0~100";
+                        } else if (replycount <= 500) {
+                            replycount = "101~500";
+                        } else if (replycount <= 1000) {
+                            replycount = "501~1000";
+                        } else if (replycount <= 5000) {
+                            replycount = "1001~5000";
+                        } else if (replycount <= 10000) {
+                            replycount = "5001~10000";
+                        } else {
+                            replycount = "10001~";
+                        }
                     }
 
                     post["replycount"] = replycount;
