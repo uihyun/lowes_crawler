@@ -9,7 +9,7 @@ var itemCount = config.itemCount,
     outputType = config.outputType,
     brand = config.brand,
     product = config.product,
-    dateformat = config.dateformat;
+    numberFormat = config.numberFormat;
 
 var posts = new Array();
 
@@ -97,7 +97,7 @@ function getArticle(i) {
 
                     replycountIdx = replycount - 1;
             
-                    if (dateformat == 1) {
+                    if (numberFormat == 1) {
                         if (replycount <= 100) {
                             replycount = "0~100";
                         } else if (replycount <= 500) {
@@ -208,7 +208,7 @@ function getArticle(i) {
                                 // write csv
                                 fs.appendFile('store_lowes_' + brand + '.csv',  '"' + post["seq"] + '","' + post["title"] + '","' + post["link"] + '","' + post["content"] + 
                                 '","' + post["modelcode"] + '","' + post["price"] + '","' + post["rating"] + '","' + post["replycount"] + '","' + reply["replydate"] + 
-                                '","' + reply["replybody"] + '","' + reply["replywriter"] + '","' + reply["replyrating"] + '","' + brandStr + '","lowes"\n', 'utf-8', function (err) {
+                                '","' + reply["replybody"] + '","' + reply["replywriter"] + '","' + reply["replyrating"] + '","' + brandStr + '","Lowes"\n', 'utf-8', function (err) {
                                     if (err) throw err;
                                     else console.log("### saved item and reply " + r + " ###");
                                 });
